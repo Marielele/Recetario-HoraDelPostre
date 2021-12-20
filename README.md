@@ -1,2 +1,2 @@
 # Recetario-HoraDelPostre
- Aplicación de escritorio java
+ Aplicación de escritorio java, recetario de postres
