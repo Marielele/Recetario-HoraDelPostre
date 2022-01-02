@@ -49,11 +49,7 @@ public class Inicio extends javax.swing.JFrame {
         jList1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(118, 60, 0)));
         jList1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jList1.setForeground(new java.awt.Color(118, 60, 0));
-        jList1.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Galletas chips-choco", "Galletas macadamia", "Chocogalleta", "Cupcakes", "Vainilla cake", "Choco-berrys cake", "Alfajores", "No bake cheesecake", "Panqué de plátano", "Apple pie" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
+        jList1.setToolTipText("Lista de recetas");
         jScrollPane1.setViewportView(jList1);
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 11, 204, 341));
@@ -93,7 +89,8 @@ public class Inicio extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        
+        Receta abrir = new Receta();
+        abrir.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

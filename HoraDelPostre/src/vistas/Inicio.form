@@ -64,19 +64,9 @@
               <Color blue="0" green="3c" red="76" type="rgb"/>
             </Property>
             <Property name="model" type="javax.swing.ListModel" editor="org.netbeans.modules.form.editors2.ListModelEditor">
-              <StringArray count="10">
-                <StringItem index="0" value="Galletas chips-choco"/>
-                <StringItem index="1" value="Galletas macadamia"/>
-                <StringItem index="2" value="Chocogalleta"/>
-                <StringItem index="3" value="Cupcakes"/>
-                <StringItem index="4" value="Vainilla cake"/>
-                <StringItem index="5" value="Choco-berrys cake"/>
-                <StringItem index="6" value="Alfajores"/>
-                <StringItem index="7" value="No bake cheesecake"/>
-                <StringItem index="8" value="Panqu&#xe9; de pl&#xe1;tano"/>
-                <StringItem index="9" value="Apple pie"/>
-              </StringArray>
+              <StringArray count="0"/>
             </Property>
+            <Property name="toolTipText" type="java.lang.String" value="Lista de recetas"/>
           </Properties>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
