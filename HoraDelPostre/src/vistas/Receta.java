@@ -173,6 +173,7 @@ public class Receta extends javax.swing.JFrame {
         
         HoraDelPostre hdr = new HoraDelPostre();
         hdr.crearReceta(title, ingredients, cookware, process);
+        hdr.agregarRecetaAListado(title);
     }//GEN-LAST:event_jBtnGuardarActionPerformed
 
     private void addImgsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addImgsActionPerformed

@@ -11,6 +11,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import vistas.Inicio;
 
@@ -20,8 +21,8 @@ import vistas.Inicio;
  */
 public class HoraDelPostre {
 
-    String carpetaPrincipal = "D:\\Documents\\Recetas_Hora_del_postre";
-    String recetaReciente = "\\Listado.txt";
+    public String carpetaPrincipal = "D:\\Documents\\Recetas_Hora_del_postre";
+    public String recetaReciente = "\\Listado.txt";
 
     public static void main(String[] args) {
 //        creaCarpeta();
@@ -52,7 +53,7 @@ public class HoraDelPostre {
         String aUtensilios = "\\Utensilios.txt";
         String aProcedimiento = "\\Procedimiento.txt";
         File nuevaCarpeta = new File(carpetaPrincipal + nombreCarpeta);
-        
+
         if (!nuevaCarpeta.exists()) {
             nuevaCarpeta.mkdirs();
             try {
@@ -73,4 +74,16 @@ public class HoraDelPostre {
             JOptionPane.showMessageDialog(null, "Receta ya existente");
         }
     }
+
+    public void agregarRecetaAListado(String titulo) {
+        try {
+            FileWriter listado = new FileWriter(carpetaPrincipal + recetaReciente, true);
+            listado.write(titulo);
+            listado.write("\n");
+            listado.close();
+        } catch (IOException ex) {
+            Logger.getLogger(HoraDelPostre.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
 }
