@@ -177,7 +177,7 @@ public class Receta extends javax.swing.JFrame {
     }//GEN-LAST:event_jBtnGuardarActionPerformed
 
     private void addImgsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addImgsActionPerformed
-        
+
     }//GEN-LAST:event_addImgsActionPerformed
 
     /**
