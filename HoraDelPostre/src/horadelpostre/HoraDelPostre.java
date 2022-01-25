@@ -5,15 +5,12 @@
  */
 package horadelpostre;
 
-import java.awt.Frame;
 import java.io.*;
 import java.io.File;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
-import vistas.Inicio;
 
 /**
  *
@@ -25,9 +22,6 @@ public class HoraDelPostre {
     public String recetaReciente = "\\Listado.txt";
 
     public static void main(String[] args) {
-//        creaCarpeta();
-//        Inicio ini = new Inicio();
-//        ini.setVisible(true);
     }
 
     public void creaCarpeta() {
@@ -47,7 +41,7 @@ public class HoraDelPostre {
 
     }
 
-    public void crearReceta(String nombre, String ingredientes, String utensilios, String procedimento) {
+    public void crearReceta(String nombre, String ingredientes, String utensilios, String procedimento, String rutaImagen) {
         String nombreCarpeta = "\\" + nombre;
         String aIngredientes = "\\Ingredientes.txt";
         String aUtensilios = "\\Utensilios.txt";
@@ -86,4 +80,7 @@ public class HoraDelPostre {
         }
     }
 
+    public void CopiarImagen() {
+
+    }
 }

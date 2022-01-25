@@ -8,22 +8,25 @@ package vistas;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import horadelpostre.HoraDelPostre;
+import java.io.*;
+import javax.swing.JFileChooser;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
  *
  * @author Mariel Mata <mlmtcrdn@gmail.com>
  */
 public class Receta extends javax.swing.JFrame {
-
     /**
      * Creates new form Receta
      */
     public Receta() {
         initComponents();
         setIconImage(new ImageIcon(getClass().getResource("/iconpastel.png")).getImage());
-        /** Pantalla completa
-         * this.setExtendedState(6);
-        **/     
+        /**
+         * Pantalla completa this.setExtendedState(6);
+        *
+         */
     }
 
     /**
@@ -92,7 +95,7 @@ public class Receta extends javax.swing.JFrame {
         addImgs.setBackground(new java.awt.Color(208, 126, 46));
         addImgs.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         addImgs.setForeground(new java.awt.Color(118, 60, 0));
-        addImgs.setText("Agregar imagenes");
+        addImgs.setText("Agregar imagen");
         addImgs.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 addImgsActionPerformed(evt);
@@ -101,7 +104,7 @@ public class Receta extends javax.swing.JFrame {
 
         jtfRutaImg.setEditable(false);
         jtfRutaImg.setBackground(new java.awt.Color(248, 232, 180));
-        jtfRutaImg.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jtfRutaImg.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jtfRutaImg.setBorder(null);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -122,7 +125,7 @@ public class Receta extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(addImgs)
+                        .addComponent(addImgs, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jtfRutaImg)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -142,11 +145,10 @@ public class Receta extends javax.swing.JFrame {
                     .addComponent(jScrollPane2)
                     .addComponent(jScrollPane1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jBtnGuardar)
-                        .addComponent(jtfRutaImg, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(addImgs))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jBtnGuardar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(addImgs, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jtfRutaImg, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addContainerGap())
         );
 
@@ -170,14 +172,21 @@ public class Receta extends javax.swing.JFrame {
         String ingredients = jtaIngredientes.getText();
         String cookware = jtaUtensilios.getText();
         String process = jtaProcedimiento.getText();
-        
+        String imagen = jtfRutaImg.getText();
+
         HoraDelPostre hdr = new HoraDelPostre();
-        hdr.crearReceta(title, ingredients, cookware, process);
+        hdr.crearReceta(title, ingredients, cookware, process,imagen);
         hdr.agregarRecetaAListado(title);
     }//GEN-LAST:event_jBtnGuardarActionPerformed
 
     private void addImgsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addImgsActionPerformed
-
+        JFileChooser fc = new JFileChooser();
+        fc.setFileFilter(new FileNameExtensionFilter("Archivos de imagen", "jpg", "jpeg", "png", "JPG", "JPEG", "PNG"));
+        int selecion = fc.showOpenDialog(this);
+        if (selecion == JFileChooser.APPROVE_OPTION) {
+            File img = fc.getSelectedFile();
+            jtfRutaImg.setText(img.getAbsolutePath());
+        }
     }//GEN-LAST:event_addImgsActionPerformed
 
     /**
