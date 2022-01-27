@@ -6,6 +6,7 @@
 package vistas;
 
 import horadelpostre.HoraDelPostre;
+import java.awt.Image;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -13,6 +14,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import misc.RecetaClase;
@@ -40,6 +42,12 @@ public class VistaDeReceta extends javax.swing.JFrame {
         jtaIngredientes.setText(recetaActiva.getIngredientes());
         jtaUtensilios.setText(recetaActiva.getUtensilios());
         jtaProcedimiento.setText(recetaActiva.getProcedimiento());
+        ImageIcon imagen = new ImageIcon(recetaActiva.getImagen());
+        Icon icono = new ImageIcon(imagen.getImage().getScaledInstance(
+                jlImagen.getWidth(), 
+                jlImagen.getHeight(), 
+                Image.SCALE_DEFAULT));
+        jlImagen.setIcon(icono);
         jbEditarImagenes.setVisible(false);
         jbGuardar.setVisible(false);
     }
@@ -55,19 +63,18 @@ public class VistaDeReceta extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jtfNombreReceta = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jtaIngredientes = new javax.swing.JTextArea();
         jScrollPane2 = new javax.swing.JScrollPane();
         jtaUtensilios = new javax.swing.JTextArea();
         jScrollPane3 = new javax.swing.JScrollPane();
         jtaProcedimiento = new javax.swing.JTextArea();
-        jbEditarImagenes = new javax.swing.JButton();
         jbGuardar = new javax.swing.JButton();
         jbEditar = new javax.swing.JButton();
+        jbEditarImagenes = new javax.swing.JButton();
+        jlImagen = new javax.swing.JLabel();
 
         setResizable(false);
-        getContentPane().setLayout(new javax.swing.BoxLayout(getContentPane(), javax.swing.BoxLayout.LINE_AXIS));
 
         jPanel1.setBackground(new java.awt.Color(249, 247, 220));
 
@@ -76,8 +83,6 @@ public class VistaDeReceta extends javax.swing.JFrame {
         jtfNombreReceta.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jtfNombreReceta.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jtfNombreReceta.setBorder(null);
-
-        jLabel1.setText("Imagen");
 
         jtaIngredientes.setEditable(false);
         jtaIngredientes.setBackground(new java.awt.Color(248, 232, 180));
@@ -100,11 +105,6 @@ public class VistaDeReceta extends javax.swing.JFrame {
         jtaProcedimiento.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Procedimiento", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
         jScrollPane3.setViewportView(jtaProcedimiento);
 
-        jbEditarImagenes.setBackground(new java.awt.Color(208, 126, 46));
-        jbEditarImagenes.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jbEditarImagenes.setForeground(new java.awt.Color(118, 60, 0));
-        jbEditarImagenes.setText("Editar Imagenes");
-
         jbGuardar.setBackground(new java.awt.Color(208, 126, 46));
         jbGuardar.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jbGuardar.setForeground(new java.awt.Color(118, 60, 0));
@@ -116,14 +116,20 @@ public class VistaDeReceta extends javax.swing.JFrame {
         });
 
         jbEditar.setBackground(new java.awt.Color(208, 126, 46));
-        jbEditar.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jbEditar.setForeground(new java.awt.Color(118, 60, 0));
-        jbEditar.setText("Editar receta");
+        jbEditar.setText("✏");
         jbEditar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbEditarActionPerformed(evt);
             }
         });
+
+        jbEditarImagenes.setBackground(new java.awt.Color(208, 126, 46));
+        jbEditarImagenes.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jbEditarImagenes.setForeground(new java.awt.Color(118, 60, 0));
+        jbEditarImagenes.setText("Editar Imagen");
+
+        jlImagen.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -132,51 +138,88 @@ public class VistaDeReceta extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jtfNombreReceta)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jScrollPane3)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 399, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(74, 74, 74)
+                        .addComponent(jbEditar)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jbEditarImagenes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addGap(0, 67, Short.MAX_VALUE)
-                                .addComponent(jbGuardar))
-                            .addComponent(jbEditar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(jlImagen, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(34, 34, 34)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jbGuardar)
+                                    .addComponent(jbEditarImagenes, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jtfNombreReceta, javax.swing.GroupLayout.PREFERRED_SIZE, 365, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 373, Short.MAX_VALUE)))))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jtfNombreReceta, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 213, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jbEditar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jlImagen, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
                         .addComponent(jbEditarImagenes)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jbGuardar))
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jbGuardar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jbEditar)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jtfNombreReceta, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 192, Short.MAX_VALUE)
+                        .addGap(6, 6, 6)))
                 .addContainerGap())
         );
 
-        getContentPane().add(jPanel1);
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 11, Short.MAX_VALUE))
+        );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jbEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbEditarActionPerformed
+        // TODO add your handling code here:
+        jbEditarImagenes.setVisible(true);
+        jbGuardar.setVisible(true);
+        jtaIngredientes.setEditable(true);
+        jtaProcedimiento.setEditable(true);
+        jtaUtensilios.setEditable(true);
+    }//GEN-LAST:event_jbEditarActionPerformed
+
+    private void jbGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbGuardarActionPerformed
+        // TODO add your handling code here:
+        EditarReceta(jtfNombreReceta.getText());
+        JOptionPane.showMessageDialog(null, "La receta " + recetaActiva.getNombre() + " se ha modificado");
+    }//GEN-LAST:event_jbGuardarActionPerformed
 
     public void EditarReceta(String receta) {
         String ruta = carpetaPrincipal + "\\" + receta;
@@ -195,21 +238,6 @@ public class VistaDeReceta extends javax.swing.JFrame {
         }
     }
 
-    private void jbEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbEditarActionPerformed
-        // TODO add your handling code here:
-        jbEditarImagenes.setVisible(true);
-        jbGuardar.setVisible(true);
-        jtaIngredientes.setEditable(true);
-        jtaProcedimiento.setEditable(true);
-        jtaUtensilios.setEditable(true);
-    }//GEN-LAST:event_jbEditarActionPerformed
-
-    private void jbGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbGuardarActionPerformed
-        // TODO add your handling code here:
-        EditarReceta(jtfNombreReceta.getText());
-        JOptionPane.showMessageDialog(null, "La receta " + recetaActiva.getNombre() + " se ha modificado");
-    }//GEN-LAST:event_jbGuardarActionPerformed
-
     public void RecetaAVer(String recetaSelect) {
         File fileIng = null;
         File fileUten = null;
@@ -220,15 +248,28 @@ public class VistaDeReceta extends javax.swing.JFrame {
             String rutaIng = rutaCarpeta + "\\Ingredientes.txt";
             String rutaUten = rutaCarpeta + "\\Utensilios.txt";
             String rutaProc = rutaCarpeta + "\\Procedimiento.txt";
+            String rutaImagenJPG = rutaCarpeta + "\\imagen.jpg";
+            String rutaImagenPNG = rutaCarpeta + "\\imagen.png";
+            String rutaImagenJPEG = rutaCarpeta + "\\imagen.jpeg";
             fileIng = new File(rutaIng);
             fileUten = new File(rutaUten);
             fileProc = new File(rutaProc);
+            File imgPNG = new File(rutaImagenPNG);
+            File imgJPG = new File(rutaImagenJPG);
+            File imgJPEG = new File(rutaImagenJPEG);
 
             String nombRec = recetaSelect;
             String ingRec = new String(Files.readAllBytes(Paths.get(rutaIng)));
             String utenRec = new String(Files.readAllBytes(Paths.get(rutaUten)));
             String procRec = new String(Files.readAllBytes(Paths.get(rutaProc)));
-            recetaActiva = new RecetaClase(nombRec, ingRec, utenRec, procRec);
+
+            if (imgJPG.exists()) {
+                recetaActiva = new RecetaClase(nombRec, ingRec, utenRec, procRec, rutaImagenJPG);
+            } else if (imgPNG.exists()) {
+                recetaActiva = new RecetaClase(nombRec, ingRec, utenRec, procRec, rutaImagenPNG);
+            } else {
+                recetaActiva = new RecetaClase(nombRec, ingRec, utenRec, procRec, rutaImagenJPEG);
+            }
 
         } catch (IOException ex) {
             Logger.getLogger(Inicio.class.getName()).log(Level.SEVERE, null, ex);
@@ -272,7 +313,6 @@ public class VistaDeReceta extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
@@ -280,6 +320,7 @@ public class VistaDeReceta extends javax.swing.JFrame {
     private javax.swing.JButton jbEditar;
     private javax.swing.JButton jbEditarImagenes;
     private javax.swing.JButton jbGuardar;
+    private javax.swing.JLabel jlImagen;
     private javax.swing.JTextArea jtaIngredientes;
     private javax.swing.JTextArea jtaProcedimiento;
     private javax.swing.JTextArea jtaUtensilios;

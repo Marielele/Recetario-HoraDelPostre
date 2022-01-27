@@ -11,6 +11,10 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 
 /**
  *
@@ -22,6 +26,20 @@ public class HoraDelPostre {
     public String recetaReciente = "\\Listado.txt";
 
     public static void main(String[] args) {
+        String rutaImagenJPG = "D:\\Documents\\Recetas_Hora_del_postre\\Quesadilla con queso\\imagen.jpg";
+        String rutaImagenPNG = "D:\\Documents\\Recetas_Hora_del_postre\\Quesadilla con queso\\imagen.png";
+        String rutaImagenJPEG = "D:\\Documents\\Recetas_Hora_del_postre\\Quesadilla con queso\\imagen.jpeg";
+        File imgPNG = new File(rutaImagenPNG);
+        File imgJPG = new File(rutaImagenJPG);
+        File imgJPEG = new File(rutaImagenJPEG);
+
+        if (imgJPG.exists()) {
+            JOptionPane.showMessageDialog(null, "Es una imagen jpg");
+        } else if (imgPNG.exists()) {
+            JOptionPane.showMessageDialog(null, "Es una imagen png");
+        } else {
+            JOptionPane.showMessageDialog(null, "Es una imagen jpeg");
+        }
     }
 
     public void creaCarpeta() {
@@ -46,7 +64,19 @@ public class HoraDelPostre {
         String aIngredientes = "\\Ingredientes.txt";
         String aUtensilios = "\\Utensilios.txt";
         String aProcedimiento = "\\Procedimiento.txt";
+        String png = "\\imagen.png";
+        String jpg = "\\imagen.jpg";
+        String jpeg = "\\imagen.jpeg";
         File nuevaCarpeta = new File(carpetaPrincipal + nombreCarpeta);
+        Path origenPath = Paths.get(rutaImagen);
+        Path destinoPathJPG = Paths.get(carpetaPrincipal + nombreCarpeta + jpg);
+        Path destinoPathPNG = Paths.get(carpetaPrincipal + nombreCarpeta + png);
+        Path destinoPathJPEG = Paths.get(carpetaPrincipal + nombreCarpeta + jpeg);
+//        File source = new File(rutaImagen);
+//        File destinoPNG = new File(carpetaPrincipal + nombreCarpeta + png);
+//        File destinoJPG = new File(carpetaPrincipal + nombreCarpeta + jpg);
+//        File destinoJPEG = new File(carpetaPrincipal + nombreCarpeta + jpeg);
+        String formato = rutaImagen.substring(rutaImagen.length() - 3);
 
         if (!nuevaCarpeta.exists()) {
             nuevaCarpeta.mkdirs();
@@ -60,6 +90,15 @@ public class HoraDelPostre {
                 FileWriter nProcedimiento = new FileWriter(carpetaPrincipal + nombreCarpeta + aProcedimiento);
                 nProcedimiento.write(procedimento);
                 nProcedimiento.close();
+
+                if (formato.contains("JPG") || formato.contains("jpg")) {
+                    Files.copy(origenPath, destinoPathJPG, StandardCopyOption.REPLACE_EXISTING);
+                } else if (formato.contains("PNG") || formato.contains("png")) {
+                    Files.copy(origenPath, destinoPathPNG, StandardCopyOption.REPLACE_EXISTING);
+                } else {
+                    Files.copy(origenPath, destinoPathJPEG, StandardCopyOption.REPLACE_EXISTING);
+                }
+
             } catch (IOException ex) {
                 Logger.getLogger(HoraDelPostre.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -78,9 +117,5 @@ public class HoraDelPostre {
         } catch (IOException ex) {
             Logger.getLogger(HoraDelPostre.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }
-
-    public void CopiarImagen() {
-
     }
 }

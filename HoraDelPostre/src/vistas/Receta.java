@@ -175,7 +175,7 @@ public class Receta extends javax.swing.JFrame {
         String imagen = jtfRutaImg.getText();
 
         HoraDelPostre hdr = new HoraDelPostre();
-        hdr.crearReceta(title, ingredients, cookware, process,imagen);
+        hdr.crearReceta(title, ingredients, cookware, process, imagen);
         hdr.agregarRecetaAListado(title);
     }//GEN-LAST:event_jBtnGuardarActionPerformed
 
