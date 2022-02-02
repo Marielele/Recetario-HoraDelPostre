@@ -128,6 +128,11 @@ public class VistaDeReceta extends javax.swing.JFrame {
         jbEditarImagenes.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jbEditarImagenes.setForeground(new java.awt.Color(118, 60, 0));
         jbEditarImagenes.setText("Editar Imagen");
+        jbEditarImagenes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbEditarImagenesActionPerformed(evt);
+            }
+        });
 
         jlImagen.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
@@ -184,7 +189,7 @@ public class VistaDeReceta extends javax.swing.JFrame {
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 192, Short.MAX_VALUE)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 203, Short.MAX_VALUE)
                         .addGap(6, 6, 6)))
                 .addContainerGap())
         );
@@ -197,9 +202,7 @@ public class VistaDeReceta extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 11, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -220,6 +223,10 @@ public class VistaDeReceta extends javax.swing.JFrame {
         EditarReceta(jtfNombreReceta.getText());
         JOptionPane.showMessageDialog(null, "La receta " + recetaActiva.getNombre() + " se ha modificado");
     }//GEN-LAST:event_jbGuardarActionPerformed
+
+    private void jbEditarImagenesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbEditarImagenesActionPerformed
+        
+    }//GEN-LAST:event_jbEditarImagenesActionPerformed
 
     public void EditarReceta(String receta) {
         String ruta = carpetaPrincipal + "\\" + receta;

@@ -13,7 +13,6 @@ import java.io.IOException;
 import javax.swing.DefaultListModel;
 import javax.swing.SwingConstants;
 import misc.RecetaClase;
-import static vistas.Inicio.jlRecetas;
 
 /**
  *
@@ -167,6 +166,17 @@ public class Dashboard extends javax.swing.JFrame {
         jpNuevaReceta.setBackground(new java.awt.Color(197, 205, 208));
         jpNuevaReceta.setToolTipText("Agregar receta");
         jpNuevaReceta.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jpNuevaReceta.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jpNuevaRecetaMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jpNuevaRecetaMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jpNuevaRecetaMouseExited(evt);
+            }
+        });
 
         jLabel2.setText("➕");
 
@@ -187,6 +197,17 @@ public class Dashboard extends javax.swing.JFrame {
         jpVerReceta.setBackground(new java.awt.Color(197, 205, 208));
         jpVerReceta.setToolTipText("Ver receta");
         jpVerReceta.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jpVerReceta.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jpVerRecetaMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jpVerRecetaMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jpVerRecetaMouseExited(evt);
+            }
+        });
 
         jLabel3.setBackground(new java.awt.Color(197, 205, 208));
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -213,6 +234,12 @@ public class Dashboard extends javax.swing.JFrame {
         jpActualizarLista.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jpActualizarListaMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jpActualizarListaMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jpActualizarListaMouseExited(evt);
             }
         });
 
@@ -244,8 +271,8 @@ public class Dashboard extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap(199, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jpActualizarLista, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jpNuevaReceta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jpNuevaReceta, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jpActualizarLista, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(272, 272, 272)
@@ -402,6 +429,45 @@ public class Dashboard extends javax.swing.JFrame {
         LeerLista();
     }//GEN-LAST:event_jpActualizarListaMouseClicked
 
+    private void jpVerRecetaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpVerRecetaMouseClicked
+        if (jlRecetas.isSelectionEmpty()) {
+            
+        } else {
+            String valor = jlRecetas.getSelectedValue();
+            DetallesReceta dr = new DetallesReceta();
+            dr.setVisible(true);
+        }
+    }//GEN-LAST:event_jpVerRecetaMouseClicked
+
+    private void jpNuevaRecetaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpNuevaRecetaMouseClicked
+        NuevaReceta nr = new NuevaReceta();
+        nr.setVisible(true);
+    }//GEN-LAST:event_jpNuevaRecetaMouseClicked
+
+    private void jpActualizarListaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpActualizarListaMouseEntered
+        jpActualizarLista.setBackground(Color.decode("#ebebeb"));
+    }//GEN-LAST:event_jpActualizarListaMouseEntered
+
+    private void jpNuevaRecetaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpNuevaRecetaMouseEntered
+        jpNuevaReceta.setBackground(Color.decode("#ebebeb"));
+    }//GEN-LAST:event_jpNuevaRecetaMouseEntered
+
+    private void jpVerRecetaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpVerRecetaMouseEntered
+        jpVerReceta.setBackground(Color.decode("#ebebeb"));
+    }//GEN-LAST:event_jpVerRecetaMouseEntered
+
+    private void jpNuevaRecetaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpNuevaRecetaMouseExited
+        jpNuevaReceta.setBackground(Color.decode("#c5cdd0"));
+    }//GEN-LAST:event_jpNuevaRecetaMouseExited
+
+    private void jpActualizarListaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpActualizarListaMouseExited
+       jpActualizarLista.setBackground(Color.decode("#c5cdd0"));
+    }//GEN-LAST:event_jpActualizarListaMouseExited
+
+    private void jpVerRecetaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpVerRecetaMouseExited
+        jpVerReceta.setBackground(Color.decode("#c5cdd0"));
+    }//GEN-LAST:event_jpVerRecetaMouseExited
+
     /**
      * @param args the command line arguments
      */
@@ -446,7 +512,7 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel jlMin;
-    private javax.swing.JList<String> jlRecetas;
+    public static javax.swing.JList<String> jlRecetas;
     private javax.swing.JLabel jlTitulo;
     private javax.swing.JLabel jlX;
     private javax.swing.JPanel jpActualizarLista;
@@ -455,7 +521,6 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JPanel jpFondo;
     private javax.swing.JPanel jpMinimizar;
     private javax.swing.JPanel jpNuevaReceta;
-    private javax.swing.JPanel jpNuevaReceta1;
     private javax.swing.JPanel jpVerReceta;
     // End of variables declaration//GEN-END:variables
 }

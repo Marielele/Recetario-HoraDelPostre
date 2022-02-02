@@ -72,10 +72,6 @@ public class HoraDelPostre {
         Path destinoPathJPG = Paths.get(carpetaPrincipal + nombreCarpeta + jpg);
         Path destinoPathPNG = Paths.get(carpetaPrincipal + nombreCarpeta + png);
         Path destinoPathJPEG = Paths.get(carpetaPrincipal + nombreCarpeta + jpeg);
-//        File source = new File(rutaImagen);
-//        File destinoPNG = new File(carpetaPrincipal + nombreCarpeta + png);
-//        File destinoJPG = new File(carpetaPrincipal + nombreCarpeta + jpg);
-//        File destinoJPEG = new File(carpetaPrincipal + nombreCarpeta + jpeg);
         String formato = rutaImagen.substring(rutaImagen.length() - 3);
 
         if (!nuevaCarpeta.exists()) {
@@ -118,4 +114,31 @@ public class HoraDelPostre {
             Logger.getLogger(HoraDelPostre.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
+    public void EditarImagen(String receta, String rutaImagen) {
+        String nombreCarpeta = "\\" + receta;
+        String png = "\\imagen.png";
+        String jpg = "\\imagen.jpg";
+        String jpeg = "\\imagen.jpeg";
+        Path origenPath = Paths.get(rutaImagen);
+        Path destinoPathJPG = Paths.get(carpetaPrincipal + nombreCarpeta + jpg);
+        Path destinoPathPNG = Paths.get(carpetaPrincipal + nombreCarpeta + png);
+        Path destinoPathJPEG = Paths.get(carpetaPrincipal + nombreCarpeta + jpeg);
+        String formato = rutaImagen.substring(rutaImagen.length() - 3);
+
+        try {
+            if (formato.contains("JPG") || formato.contains("jpg")) {
+                Files.copy(origenPath, destinoPathJPG, StandardCopyOption.REPLACE_EXISTING);
+            } else if (formato.contains("PNG") || formato.contains("png")) {
+                Files.copy(origenPath, destinoPathPNG, StandardCopyOption.REPLACE_EXISTING);
+            } else {
+                Files.copy(origenPath, destinoPathJPEG, StandardCopyOption.REPLACE_EXISTING);
+            }
+
+        } catch (IOException ex) {
+            Logger.getLogger(HoraDelPostre.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+
 }
