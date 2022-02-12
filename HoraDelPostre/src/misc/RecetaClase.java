@@ -10,35 +10,29 @@ package misc;
  * @author Mariel Mata <mlmtcrdn@gmail.com>
  */
 public class RecetaClase {
-    private String nombre;
-    private String ingredientes;
-    private String utensilios;
-    private String procedimiento;
-    private String imagen;
+    String titulo;
+    String ingredientes;
+    String utensilios;
+    String procedimiento;
+    String img;
 
     public RecetaClase() {
     }
 
-    public RecetaClase(String nombre, String ingredientes, String utensilios, String procedimiento, String imagen) {
-        this.nombre = nombre;
+    public RecetaClase(String titulo, String ingredientes, String utensilios, String procedimiento, String img) {
+        this.titulo = titulo;
         this.ingredientes = ingredientes;
         this.utensilios = utensilios;
         this.procedimiento = procedimiento;
-        this.imagen = imagen;
-    }
-        public RecetaClase(String nombre, String ingredientes, String utensilios, String procedimiento) {
-        this.nombre = nombre;
-        this.ingredientes = ingredientes;
-        this.utensilios = utensilios;
-        this.procedimiento = procedimiento;
+        this.img = img;
     }
 
-    public String getNombre() {
-        return nombre;
+    public String getTitulo() {
+        return titulo;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
     }
 
     public String getIngredientes() {
@@ -65,11 +59,13 @@ public class RecetaClase {
         this.procedimiento = procedimiento;
     }
 
-    public String getImagen() {
-        return imagen;
+    public String getImg() {
+        return img;
     }
 
-    public void setImagen(String imagen) {
-        this.imagen = imagen;
+    public void setImg(String img) {
+        this.img = img;
     }
+    
+    
 }

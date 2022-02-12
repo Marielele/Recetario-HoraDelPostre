@@ -3,21 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package vistas;
+package Vistas;
 
 import java.awt.Color;
-import java.awt.Image;
+import java.awt.Toolkit;
 import javax.swing.ImageIcon;
-import horadelpostre.HoraDelPostre;
-import java.io.*;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.DefaultListModel;
-import javax.swing.JOptionPane;
-import misc.RecetaClase;
+import misc.Funciones;
 
 /**
  *
@@ -25,16 +16,15 @@ import misc.RecetaClase;
  */
 public class Inicio extends javax.swing.JFrame {
 
-    RecetaClase recetaActiva = null;
-    String carpetaPrincipal = "D:\\Documents\\Recetas_Hora_del_postre";
-
     /**
      * Creates new form Inicio
      */
     public Inicio() {
         initComponents();
-        setIconImage(new ImageIcon(getClass().getResource("/iconpastel.png")).getImage());
-        LeerLista();
+//        setIconImage(new ImageIcon(getClass().getResource("/Recursos/iconhdr.png")).getImage());
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Recursos/hdricon.png")));
+        Funciones f = new Funciones();
+        f.creaCarpeta();
     }
 
     /**
@@ -47,169 +37,210 @@ public class Inicio extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jButton2 = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jlRecetas = new javax.swing.JList<>();
-        jButton3 = new javax.swing.JButton();
+        pCerrar = new javax.swing.JPanel();
+        jlX = new javax.swing.JLabel();
+        jpAgregar = new javax.swing.JPanel();
+        jpTextoA = new javax.swing.JLabel();
+        jlTitulo = new javax.swing.JLabel();
+        jpVer = new javax.swing.JPanel();
+        jlTextoV = new javax.swing.JLabel();
+        jSeparator1 = new javax.swing.JSeparator();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Inicio");
-        setBackground(new java.awt.Color(249, 247, 220));
-        setFont(new java.awt.Font("Arial", 0, 10)); // NOI18N
+        setUndecorated(true);
         setResizable(false);
 
-        jPanel1.setBackground(new java.awt.Color(249, 247, 220));
+        jPanel1.setBackground(new java.awt.Color(255, 208, 220));
 
-        jButton2.setBackground(new java.awt.Color(208, 126, 46));
-        jButton2.setForeground(new java.awt.Color(118, 60, 0));
-        jButton2.setText("🔄");
-        jButton2.setToolTipText("Actualizar lista de recetas");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+        pCerrar.setBackground(new java.awt.Color(255, 208, 220));
+        pCerrar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                pCerrarMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                pCerrarMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                pCerrarMouseExited(evt);
             }
         });
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vistas/log.png"))); // NOI18N
+        jlX.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jlX.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jlX.setText("X");
 
-        jButton1.setBackground(new java.awt.Color(208, 126, 46));
-        jButton1.setForeground(new java.awt.Color(118, 60, 0));
-        jButton1.setText("➕");
-        jButton1.setToolTipText("Agregar receta");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+        javax.swing.GroupLayout pCerrarLayout = new javax.swing.GroupLayout(pCerrar);
+        pCerrar.setLayout(pCerrarLayout);
+        pCerrarLayout.setHorizontalGroup(
+            pCerrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jlX, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
+        );
+        pCerrarLayout.setVerticalGroup(
+            pCerrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jlX, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
+        );
+
+        jpAgregar.setBackground(new java.awt.Color(221, 108, 142));
+        jpAgregar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jpAgregarMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jpAgregarMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jpAgregarMouseExited(evt);
             }
         });
 
-        jlRecetas.setBackground(new java.awt.Color(248, 232, 180));
-        jlRecetas.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(118, 60, 0)));
-        jlRecetas.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jlRecetas.setForeground(new java.awt.Color(118, 60, 0));
-        jlRecetas.setToolTipText("Lista de recetas");
-        jScrollPane1.setViewportView(jlRecetas);
+        jpTextoA.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
+        jpTextoA.setForeground(new java.awt.Color(255, 255, 255));
+        jpTextoA.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jpTextoA.setText("Agregar recetas");
 
-        jButton3.setBackground(new java.awt.Color(208, 126, 46));
-        jButton3.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jButton3.setForeground(new java.awt.Color(118, 60, 0));
-        jButton3.setText("Ver receta");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+        javax.swing.GroupLayout jpAgregarLayout = new javax.swing.GroupLayout(jpAgregar);
+        jpAgregar.setLayout(jpAgregarLayout);
+        jpAgregarLayout.setHorizontalGroup(
+            jpAgregarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpAgregarLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jpTextoA, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jpAgregarLayout.setVerticalGroup(
+            jpAgregarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpAgregarLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jpTextoA)
+                .addContainerGap())
+        );
+
+        jlTitulo.setFont(new java.awt.Font("Calisto MT", 0, 24)); // NOI18N
+        jlTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jlTitulo.setText("Hora del postre");
+
+        jpVer.setBackground(new java.awt.Color(221, 108, 142));
+        jpVer.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jpVerMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jpVerMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jpVerMouseExited(evt);
             }
         });
+
+        jlTextoV.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
+        jlTextoV.setForeground(new java.awt.Color(255, 255, 255));
+        jlTextoV.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jlTextoV.setText("Ver recetas");
+
+        javax.swing.GroupLayout jpVerLayout = new javax.swing.GroupLayout(jpVer);
+        jpVer.setLayout(jpVerLayout);
+        jpVerLayout.setHorizontalGroup(
+            jpVerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpVerLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jlTextoV, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jpVerLayout.setVerticalGroup(
+            jpVerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpVerLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jlTextoV)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jSeparator1.setForeground(new java.awt.Color(51, 51, 51));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(pCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(24, 24, 24))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButton2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton1)))
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jSeparator1)
+                    .addComponent(jlTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, 195, Short.MAX_VALUE)
+                    .addComponent(jpAgregar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jpVer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButton2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 307, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 12, Short.MAX_VALUE))
-                    .addComponent(jScrollPane1))
+                .addComponent(pCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jlTitulo)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton3))
-                .addContainerGap())
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jpAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jpVer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(28, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void LeerLista() {
-        File listado = null;
-        FileReader fr = null;
-        BufferedReader bf = null;
-        try {
-            String ruta = carpetaPrincipal + "\\Listado.txt";
-            listado = new File(ruta);
-            fr = new FileReader(listado);
-            bf = new BufferedReader(fr);
-            String info;
-            DefaultListModel listilla = new DefaultListModel();
-            if (listado.length() == 0) {
-                listilla.addElement("No hay recetas.");
-                jlRecetas.setModel(listilla);
-            } else {
-                while ((info = bf.readLine()) != null) {
-                    listilla.addElement(info);
-                }
-                jlRecetas.setModel(listilla);
-            }
-        } catch (Exception e) {
+    private void jpAgregarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpAgregarMouseClicked
+        AgregarReceta ar = new AgregarReceta(this, true);
+        ar.setVisible(true);
+    }//GEN-LAST:event_jpAgregarMouseClicked
 
-        } finally {
-            try {
-                if (null != fr) {
-                    fr.close();
-                }
-            } catch (IOException e2) {
-            }
-        }
-    }
+    private void pCerrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pCerrarMouseClicked
+        System.exit(0);
+    }//GEN-LAST:event_pCerrarMouseClicked
 
+    private void jpVerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpVerMouseClicked
+        VerRecetas vr = new VerRecetas(this, true);
+        vr.setVisible(true);
+    }//GEN-LAST:event_jpVerMouseClicked
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        Receta abrir = new Receta();
-        abrir.setVisible(true);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void pCerrarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pCerrarMouseEntered
+        pCerrar.setBackground(Color.red);
+        jlX.setForeground(Color.white);
+    }//GEN-LAST:event_pCerrarMouseEntered
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-        LeerLista();
-    }//GEN-LAST:event_jButton2ActionPerformed
+    private void pCerrarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pCerrarMouseExited
+        pCerrar.setBackground(Color.decode("#FFD0DC"));
+        jlX.setForeground(Color.black);
+    }//GEN-LAST:event_pCerrarMouseExited
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-        if (jlRecetas.isSelectionEmpty()) {
-            JOptionPane.showMessageDialog(null, "Seleccione la receta a visualizar primero");
-        } else {
-            String valor = jlRecetas.getSelectedValue();
-            VistaDeReceta vdr = new VistaDeReceta();
-            vdr.setVisible(true);
-        }
+    private void jpAgregarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpAgregarMouseEntered
+        jpAgregar.setBackground(Color.decode("#A6576E"));
+    }//GEN-LAST:event_jpAgregarMouseEntered
 
-    }//GEN-LAST:event_jButton3ActionPerformed
+    private void jpAgregarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpAgregarMouseExited
+        jpAgregar.setBackground(Color.decode("#DD6C8E"));
+    }//GEN-LAST:event_jpAgregarMouseExited
+
+    private void jpVerMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpVerMouseEntered
+        jpVer.setBackground(Color.decode("#A6576E"));
+    }//GEN-LAST:event_jpVerMouseEntered
+
+    private void jpVerMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpVerMouseExited
+        jpVer.setBackground(Color.decode("#DD6C8E"));
+    }//GEN-LAST:event_jpVerMouseExited
 
     /**
      * @param args the command line arguments
@@ -220,8 +251,6 @@ public class Inicio extends javax.swing.JFrame {
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
-        HoraDelPostre hdr = new HoraDelPostre();
-        hdr.creaCarpeta();
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -249,12 +278,14 @@ public class Inicio extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
-    public static javax.swing.JList<String> jlRecetas;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JLabel jlTextoV;
+    private javax.swing.JLabel jlTitulo;
+    private javax.swing.JLabel jlX;
+    private javax.swing.JPanel jpAgregar;
+    private javax.swing.JLabel jpTextoA;
+    private javax.swing.JPanel jpVer;
+    private javax.swing.JPanel pCerrar;
     // End of variables declaration//GEN-END:variables
 }
